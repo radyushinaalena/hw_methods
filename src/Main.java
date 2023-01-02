@@ -2,43 +2,40 @@ import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
-        determineLeapYear(2009);
-        selectApplicationVersion(0, 2000);
+        determineLeapYear(1976);
+        selectApplicationVersion(1, 2021);
         System.out.println(calculateDeliveryTime(11));
     }
 
     public static void determineLeapYear(int year) {
         System.out.println("Задача 1");
-        if (year % 400 == 0) {
-            System.out.println(year + " год является високосным");
-        } else if (year % 100 == 0) {
+
+        if (year % 4 != 0 || (year % 100 == 0 && year % 400 != 0)) {
             System.out.println(year + " год не является високосным");
-        } else if (year % 4 == 0) {
+
+        } else {
             System.out.println(year + " год является високосным");
-        } else System.out.println(year + " год не является високосным");
+        }
     }
 
     public static void selectApplicationVersion(int clientOS, int clientDeviceYear) {
         System.out.println("Задача 2");
         int currentYear = LocalDate.now().getYear();
+        String a = "";
+        String b = "";
         if (clientDeviceYear < currentYear) {
-            switch (clientOS) {
-                case 0:
-                    System.out.println("Установите облегченную версию приложения для IOS по ссылке");
-                    break;
-                case 1:
-                    System.out.println("Установите облегченную версию приложения для Android по ссылке");
-                    break;
-            }
+            a = "Установите облегченную версию приложения ";
+            System.out.print(a);
         } else {
-            switch (clientOS) {
-                case 0:
-                    System.out.println("Установите версию приложения для IOS по ссылке");
-                    break;
-                case 1:
-                    System.out.println("Установите версию приложения для Android по ссылке");
-                    break;
-            }
+            b = "Установите версию приложения ";
+            System.out.print(b);
+        }
+        if (clientOS == 0) {
+            a = "для IOS по ссылке";
+            System.out.println(a);
+        } else {
+            b = "для Android по ссылке";
+            System.out.println(b);
         }
     }
 
